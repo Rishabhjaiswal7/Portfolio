@@ -2,8 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const connectDB = require('./config/db');
+const apiRoutes = require('./routes/api');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
+
+// Connect Database
+connectDB();
 
 // CORS configuration
 const allowedOrigin = process.env.FRONTEND_ORIGIN || 'http://127.0.0.1:5500';
@@ -23,6 +29,10 @@ app.use(cors({
 // Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// API Routes
+app.use('/api', apiRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Serve client assets statically
 app.use(express.static(path.join(__dirname, '../client')));
