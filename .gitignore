@@ -1,11 +1,5 @@
 # Dependency directories
 node_modules/
-server/node_modules/
-client/node_modules/
-
-# Local configuration
-.env
-.env.local
 
 # IDE and OS cache
 .vscode/
